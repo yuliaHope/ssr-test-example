@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import Grid from './grid';
 
 class App extends Component {
   render() {
     return (
       <div>
-        Hello {this.props.data}
+        <Grid data={this.props.data} />
       </div>
     );
   }
