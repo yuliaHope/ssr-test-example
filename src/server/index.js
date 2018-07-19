@@ -3,6 +3,8 @@ import cors from "cors";
 import React from "react";
 import { renderToString } from "react-dom/server";
 import serialize from "serialize-javascript";
+import { matchPath, StaticRouter } from "react-router-dom"
+import routes from '../shared/routes'
 import { fetchPopularArticles } from '../shared/api'
 import App from '../shared/app';
 
@@ -16,11 +18,21 @@ app.use(cors());
 app.use(express.static("public"));
 
 app.get("*", (req, res, next) => {
-  fetchPopularArticles()
-    .then((data) => {
-      console.log('data', data);
+  const activeRoute = routes.find(
+    (route) => matchPath(req.url, route)
+  ) || {};
+
+  const promise = activeRoute.fetchInitialData
+    ? activeRoute.fetchInitialData(req.path)
+    : Promise.resolve()
+
+    promise.then((data) => {
+
+      const context = { data };
       const markup = renderToString(
-        <App data={data}/>
+        <StaticRouter location={req.url} context={context}>
+          <App data={data}/>
+        </StaticRouter>
       );
   
       res.send(`

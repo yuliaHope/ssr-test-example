@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
-import Grid from './grid';
+import routes from './routes';
+import { Route, Switch } from 'react-router-dom';
+import Menu from './menu';
+import NoMatch from './no-match'
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Grid data={this.props.data} />
+        <Menu />
+
+        <Switch>
+          {routes.map(({ path, exact, component: Component, ...rest }) => (
+            <Route
+              key={path}
+              path={path}
+              exact={exact}
+              render={(props) => (
+                <Component {...props} {...rest} />
+              )}
+            />
+          ))}
+          <Route render={(props) => <NoMatch {...props} />} />
+        </Switch>
       </div>
     );
   }

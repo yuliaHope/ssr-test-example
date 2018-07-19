@@ -5,11 +5,11 @@ const imageBanner = { width: 200, height: 100 };
 
 class Grid extends Component {
   render() {
-    const repos = this.props.data;
+    const articles = this.props.staticContext.data || [];
 
     return (
       <ul style={gridStyle}>
-        {repos.map(({ title, url, publishedAt, urlToImage }) => (
+        {articles.map(({ title, url, publishedAt, urlToImage }) => (
           <li key={url} style={{margin: 30}}>
             <ul>
               <li><img src={urlToImage} alt="banner" style={imageBanner} ></img></li>
