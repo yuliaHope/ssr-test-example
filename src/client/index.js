@@ -5,7 +5,7 @@ import App from '../shared/app';
 
 hydrate(
   <BrowserRouter>
-    <App data={window.__INITIAL_DATA__} />
+    <App />
   </BrowserRouter>,
   document.getElementById('app')
 );
