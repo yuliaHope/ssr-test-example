@@ -17,11 +17,41 @@ class Grid extends Component {
 
     this.state = {
       articles,
+      loading: articles ? false : true,
     };
   }
 
+  componentDidMount () {
+    if (!this.state.articles) {
+      this.fetchArticles(this.props.match.params.country);
+    }
+  }
+
+//   componentDidUpdate (prevProps, prevState) {
+//     if (prevProps.match.params.country !== this.props.match.params.country) {
+//       this.fetchArticles(this.props.match.params.country);
+//     }
+//   }
+
+  fetchArticles = (lang) => {
+    this.setState(() => ({
+      loading: true
+    }));
+
+    this.props.fetchInitialData(lang)
+      .then((articles) => this.setState(() => ({
+        articles,
+        loading: false,
+      })));
+  }
+
   render() {
-    const { articles = [] } = this.state;
+      console.log('state', this.state);
+    const { articles = [], loading } = this.state;
+
+    if (loading === true) {
+      return <p>LOADING</p>;
+    }
 
     return (
       <ul style={gridStyle}>
