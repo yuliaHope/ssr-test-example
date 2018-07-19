@@ -3,6 +3,6 @@ import { hydrate } from 'react-dom';
 import App from './app';
 
 hydrate(
-  <App />,
+  <App data={window.__INITIAL_DATA__} />,
   document.getElementById('app')
 );
