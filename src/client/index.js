@@ -1,7 +1,7 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom'
-import App from '../shared/app';
+import App from '../shared/components/app';
 
 hydrate(
   <BrowserRouter>

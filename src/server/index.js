@@ -6,7 +6,7 @@ import serialize from "serialize-javascript";
 import { matchPath, StaticRouter } from "react-router-dom"
 import routes from '../shared/routes'
 import { fetchPopularArticles } from '../shared/api'
-import App from '../shared/app';
+import App from '../shared/components/app';
 
 const app = express();
 

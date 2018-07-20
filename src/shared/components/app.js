@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import routes from './routes';
+import routes from '../routes';
 import { Route, Switch } from 'react-router-dom';
 import Menu from './menu';
 import NoMatch from './no-match'

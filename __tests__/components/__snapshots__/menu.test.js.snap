@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu match snapshot 1`] = `
+<ul>
+  <li
+    key="us"
+  >
+    <NavLink
+      activeClassName="active"
+      activeStyle={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+      aria-current="page"
+      to="/popular/us"
+    >
+      US
+    </NavLink>
+  </li>
+  <li
+    key="ae"
+  >
+    <NavLink
+      activeClassName="active"
+      activeStyle={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+      aria-current="page"
+      to="/popular/ae"
+    >
+      AE
+    </NavLink>
+  </li>
+  <li
+    key="cz"
+  >
+    <NavLink
+      activeClassName="active"
+      activeStyle={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+      aria-current="page"
+      to="/popular/cz"
+    >
+      CZ
+    </NavLink>
+  </li>
+  <li
+    key="de"
+  >
+    <NavLink
+      activeClassName="active"
+      activeStyle={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+      aria-current="page"
+      to="/popular/de"
+    >
+      DE
+    </NavLink>
+  </li>
+  <li
+    key="be"
+  >
+    <NavLink
+      activeClassName="active"
+      activeStyle={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+      aria-current="page"
+      to="/popular/be"
+    >
+      BE
+    </NavLink>
+  </li>
+</ul>
+`;

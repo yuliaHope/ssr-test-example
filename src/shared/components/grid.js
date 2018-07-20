@@ -27,11 +27,11 @@ class Grid extends Component {
     }
   }
 
-//   componentDidUpdate (prevProps, prevState) {
-//     if (prevProps.match.params.country !== this.props.match.params.country) {
-//       this.fetchArticles(this.props.match.params.country);
-//     }
-//   }
+  componentDidUpdate (prevProps, prevState) {
+    if (prevProps.match.params.country !== this.props.match.params.country) {
+      this.fetchArticles(this.props.match.params.country);
+    }
+  }
 
   fetchArticles = (lang) => {
     this.setState(() => ({
@@ -46,7 +46,6 @@ class Grid extends Component {
   }
 
   render() {
-      console.log('state', this.state);
     const { articles = [], loading } = this.state;
 
     if (loading === true) {

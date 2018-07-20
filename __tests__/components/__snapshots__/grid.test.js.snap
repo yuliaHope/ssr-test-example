@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grid should match snapshot if no articles 1`] = `
+<p>
+  LOADING
+</p>
+`;
+
+exports[`Grid should match snapshot with articles 1`] = `
+<ul
+  style={
+    Object {
+      "display": "flex",
+      "flexWrap": "wrap",
+    }
+  }
+>
+  <li
+    key="/some/url"
+    style={
+      Object {
+        "margin": 30,
+      }
+    }
+  >
+    <ul>
+      <li>
+        <img
+          alt="banner"
+          src="urlToImage"
+          style={
+            Object {
+              "height": 100,
+              "width": 200,
+            }
+          }
+        />
+      </li>
+      <li>
+        <a
+          href="/some/url"
+        >
+          title
+        </a>
+      </li>
+      <li />
+    </ul>
+  </li>
+  <li
+    key="/some/url2"
+    style={
+      Object {
+        "margin": 30,
+      }
+    }
+  >
+    <ul>
+      <li>
+        <img
+          alt="banner"
+          src="urlToImage2"
+          style={
+            Object {
+              "height": 100,
+              "width": 200,
+            }
+          }
+        />
+      </li>
+      <li>
+        <a
+          href="/some/url2"
+        >
+          title2
+        </a>
+      </li>
+      <li>
+        15-04-2018
+      </li>
+    </ul>
+  </li>
+</ul>
+`;
