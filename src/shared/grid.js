@@ -5,7 +5,8 @@ const imageBanner = { width: 200, height: 100 };
 
 class Grid extends Component {
   render() {
-    const articles = this.props.staticContext.data || [];
+    const { staticContext = {}} = this.props;
+    const articles = staticContext.data || [];
 
     return (
       <ul style={gridStyle}>
