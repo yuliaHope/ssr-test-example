@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 
 const gridStyle = { display: 'flex', flexWrap: 'wrap' };
 const imageBanner = { width: 200, height: 100 };
+const EMPTY_ARRAY = [];
 
 class Grid extends Component {
   render() {
-    const { staticContext = {}} = this.props;
-    const articles = staticContext.data || [];
+    const { staticContext, data } = this.props;
+    const articles = data || EMPTY_ARRAY;
 
     return (
       <ul style={gridStyle}>

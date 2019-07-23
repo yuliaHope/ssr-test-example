@@ -17,7 +17,7 @@ class App extends Component {
               path={path}
               exact={exact}
               render={(props) => (
-                <Component {...props} {...rest} />
+                <Component {...props} {...rest} {...this.props} />
               )}
             />
           ))}
