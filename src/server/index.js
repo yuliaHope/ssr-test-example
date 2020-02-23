@@ -33,7 +33,7 @@ app.get('*', (req, res, next) => {
           </body>
           <script src="/bundle.js" defer></script>
           <script>window.__INITIAL_DATA__ = ${serialize(
-            store.getState()
+            data
           ).replace(/</g, '\\u003c')}</script>
         </html>
       `);
