@@ -6,7 +6,7 @@ const EMPTY_ARRAY = [];
 
 class Grid extends Component {
   render() {
-    const { staticContext, data } = this.props;
+    const { data } = this.props;
     const articles = data || EMPTY_ARRAY;
 
     return (
