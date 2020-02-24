@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchArticles } from './actions';
 
 const gridStyle = { display: 'flex', flexWrap: 'wrap' };
 const imageBanner = { width: 200, height: 100 };
 const EMPTY_ARRAY = [];
 
 class Grid extends Component {
-  constructor(props) {
-    super(props);
-
-    if (__isBrowser__) {
-      delete window.__INITIAL_DATA__;
-    }
-
-    this.state = {
-      articles: props.data,
-      loading: props.data ? false : true,
-    };
+  componentDidMount() {
+    this.props.fetchArticles(this.props.match.params.country);
   }
 
   componentDidMount() {
@@ -26,29 +19,12 @@ class Grid extends Component {
 
   componentDidUpdate (prevProps, prevState) {
     if (prevProps.match.params.country !== this.props.match.params.country) {
-      this.fetchArticles(this.props.match.params.country);
+      this.props.fetchArticles(this.props.match.params.country);
     }
   }
 
-  fetchArticles = lang => {
-    this.setState(() => ({
-      loading: true,
-    }));
-
-    this.props.fetchInitialData(lang).then(articles =>
-      this.setState(() => ({
-        articles,
-        loading: false,
-      }))
-    );
-  };
-
   render() {
-    const { articles = [], loading } = this.state;
-
-    if (loading === true) {
-      return <p>LOADING</p>;
-    }
+    const { articles = [] } = this.props;
 
     return (
       <ul style={gridStyle}>
@@ -70,4 +46,22 @@ class Grid extends Component {
   }
 }
 
-export default Grid;
+const mapStateToProps = state => {
+  return {
+    articles: state.articles
+  };
+};
+
+const fetchInitialData = (store, param) => {
+  // For the connect tag we need Provider component but on the server at this moment app is not rendered yet
+  // So we need to use store itself to load data
+  return store.dispatch(fetchArticles(param)); // Manually dispatch a network request
+};
+
+export default {
+  component: connect(
+    mapStateToProps,
+    { fetchArticles }
+  )(Grid),
+  fetchInitialData
+};

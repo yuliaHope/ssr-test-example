@@ -10,10 +10,7 @@ const routes =  [
   },
   {
     path: '/popular/:country',
-    component: Grid,
-    fetchInitialData: (path = '') => fetchPopularArticles(
-        path.split('/').pop()
-      )
+    ...Grid,
   }
 ];
 
