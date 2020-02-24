@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-const gridStyle = { display: "flex", flexWrap: "wrap" };
+const gridStyle = { display: 'flex', flexWrap: 'wrap' };
 const imageBanner = { width: 200, height: 100 };
 const EMPTY_ARRAY = [];
 
@@ -8,37 +8,34 @@ class Grid extends Component {
   constructor(props) {
     super(props);
 
-    let articles;
     if (__isBrowser__) {
-      articles = window.__INITIAL_DATA__;
       delete window.__INITIAL_DATA__;
-    } else {
-      articles = props.staticContext.data;
     }
 
     this.state = {
-      articles,
-      loading: articles ? false : true,
+      articles: props.data,
+      loading: props.data ? false : true,
     };
   }
 
-  // componentDidUpdate (prevProps, prevState) {
-  //   if (prevProps.match.params.country !== this.props.match.params.country) {
-  //     this.fetchArticles(this.props.match.params.country);
-  //   }
-  // }
+  componentDidUpdate (prevProps, prevState) {
+    if (prevProps.match.params.country !== this.props.match.params.country) {
+      this.fetchArticles(this.props.match.params.country);
+    }
+  }
 
-  fetchArticles = (lang) => {
+  fetchArticles = lang => {
     this.setState(() => ({
-      loading: true
+      loading: true,
     }));
 
-    this.props.fetchInitialData(lang)
-      .then((articles) => this.setState(() => ({
+    this.props.fetchInitialData(lang).then(articles =>
+      this.setState(() => ({
         articles,
         loading: false,
-      })));
-  }
+      }))
+    );
+  };
 
   render() {
     const { articles = [], loading } = this.state;
