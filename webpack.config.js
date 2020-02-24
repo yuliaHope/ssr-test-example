@@ -3,6 +3,7 @@ var webpack = require('webpack')
 var nodeExternals = require('webpack-node-externals')
 
 var browserConfig = {
+  mode: 'development',
   entry: './src/client/index.js',
   output: {
     path: path.resolve(__dirname, 'public'),

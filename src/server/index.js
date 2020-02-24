@@ -1,12 +1,10 @@
-import express from "express";
-import cors from "cors";
-import React from "react";
-import { renderToString } from "react-dom/server";
-import serialize from "serialize-javascript";
-import { matchPath, StaticRouter } from "react-router-dom"
-import routes from '../shared/routes'
-import { fetchPopularArticles } from '../shared/api'
-import App from '../shared/app';
+import express from 'express';
+import React from 'react';
+import cors from 'cors';
+import { matchPath } from "react-router-dom"
+import routes from '../shared/routes';
+
+import { serverRenderer } from './render';
 
 const app = express();
 
@@ -15,9 +13,10 @@ app.use(cors());
 // We're going to serve up the public
 // folder since that's where our
 // client bundle.js file will end up.
-app.use(express.static("public"));
+app.use(express.static('public'));
 
-app.get("*", (req, res, next) => {
+app.get('*', (req, res, next) => {
+  // Checks the given path, matches with component and returns array of items about to be rendered
   const activeRoute = routes.find(
     (route) => matchPath(req.url, route)
   ) || {};
@@ -26,32 +25,18 @@ app.get("*", (req, res, next) => {
     ? activeRoute.fetchInitialData(req.path)
     : Promise.resolve()
 
-    promise.then((data) => {
+  promise.then((data) => {
+    const context = {};
+    const content = serverRenderer(req, context, data);
 
-      const context = { data };
-      const markup = renderToString(
-        <StaticRouter location={req.url} context={context}>
-          <App data={data}/>
-        </StaticRouter>
-      );
-  
-      res.send(`
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>SSR with RR</title>
-          </head>
-    
-          <body>
-            <div id="app">${markup}</div>
-          </body>
-          <script src="/bundle.js" defer></script>
-          <script>window.__INITIAL_DATA__ = ${serialize(data)}</script>
-        </html>
-      `);
-    }).catch(next);
+    if (context.notFound) {
+      res.status(404);
+    }
+
+    res.send(content);
   });
+});
 
 app.listen(3000, () => {
   console.log(`Server is listening on port: 3000`);
-})
+});

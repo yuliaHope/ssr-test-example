@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import routes from './routes';
 import { Route, Switch } from 'react-router-dom';
 import Menu from './menu';
-import NoMatch from './no-match'
+import { NoMatch } from './no-match'
 
 class App extends Component {
   render() {
@@ -17,7 +17,7 @@ class App extends Component {
               path={path}
               exact={exact}
               render={(props) => (
-                <Component {...props} {...rest} />
+                <Component {...props} {...rest} {...this.props} />
               )}
             />
           ))}

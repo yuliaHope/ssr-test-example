@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 const gridStyle = { display: "flex", flexWrap: "wrap" };
 const imageBanner = { width: 200, height: 100 };
+const EMPTY_ARRAY = [];
 
 class Grid extends Component {
   constructor(props) {
