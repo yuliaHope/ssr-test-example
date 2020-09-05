@@ -8,16 +8,12 @@ const EMPTY_ARRAY = [];
 
 class Grid extends Component {
   componentDidMount() {
-    this.props.fetchArticles(this.props.match.params.country);
-  }
-
-  componentDidMount() {
-    if (!this.state.articles) {
+    if (!this.props.articles) {
       this.fetchArticles(this.props.match.params.country);
     }
   }
 
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.match.params.country !== this.props.match.params.country) {
       this.props.fetchArticles(this.props.match.params.country);
     }
@@ -46,9 +42,9 @@ class Grid extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    articles: state.articles
+    articles: state.articles,
   };
 };
 
@@ -59,9 +55,6 @@ const fetchInitialData = (store, param) => {
 };
 
 export default {
-  component: connect(
-    mapStateToProps,
-    { fetchArticles }
-  )(Grid),
-  fetchInitialData
+  component: connect(mapStateToProps, { fetchArticles })(Grid),
+  fetchInitialData,
 };

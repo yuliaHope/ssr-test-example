@@ -6,6 +6,7 @@ import reducers from '../shared/reducers';
 export default (state = {}) => {
   const store = createStore(
     reducers,
+    state,
     composeWithDevTools(applyMiddleware(thunk))
   );
   return store;

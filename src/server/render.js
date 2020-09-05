@@ -25,7 +25,7 @@ export function serverRenderer(req, store, context) {
             <div id="app">${markup}</div>
           </body>
           <script src="/bundle.js" defer></script>
-          <script>window.__INITIAL_DATA__ = ${serialize(store.getState())}</script>
+          <script>window.__PRELOADED_STATE__ = ${serialize(store.getState())}</script>
         </html>
       `;
 }

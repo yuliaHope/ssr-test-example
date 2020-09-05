@@ -27,7 +27,7 @@ app.get('*', (req, res, next) => {
   ) || {};
 
   const promise = activeRoute.fetchInitialData
-    ? activeRoute.fetchInitialData(store, req.path)
+    ? activeRoute.fetchInitialData(store, req.path.split('/').slice(-1)[0] )
     : Promise.resolve()
 
   promise.then(() => {

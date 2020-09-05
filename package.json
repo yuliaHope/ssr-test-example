@@ -15,13 +15,14 @@
       [
         "@babel/env",
         {
-          "useBuiltIns": "usage",
-          "corejs": "2",
+          "useBuiltIns": "entry",
+          "corejs": "3",
           "targets": {
             "browsers": [
               "last 2 versions",
               "ie >= 9"
-            ]
+            ],
+            "esmodules": true
           }
         }
       ],
