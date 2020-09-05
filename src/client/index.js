@@ -2,9 +2,7 @@ import React from 'react';
 import { hydrate } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import createStore from '../shared/store';
-import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import reducers from '../shared/reducers';
 import App from '../shared/app';
 
 const state = window.__PRELOADED_STATE__;
